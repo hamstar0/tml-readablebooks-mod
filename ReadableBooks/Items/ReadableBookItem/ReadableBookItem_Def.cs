@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace ReadableBooks.Items.NoteItem {
+namespace ReadableBooks.Items.ReadableBookItem {
 	/// <summary>
 	/// A readable note.
 	/// </summary>

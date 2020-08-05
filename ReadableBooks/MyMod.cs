@@ -1,5 +1,5 @@
 using Terraria.ModLoader;
-using ReadableBooks.Items.NoteItem;
+using ReadableBooks.Items.ReadableBookItem;
 
 
 namespace ReadableBooks {

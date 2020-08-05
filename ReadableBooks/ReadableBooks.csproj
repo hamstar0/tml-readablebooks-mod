@@ -3,7 +3,7 @@
   <Import Project="C:\Users\Spinach\Documents\My Games\Terraria\ModLoader\references\tModLoader.targets" />
   <PropertyGroup>
     <AssemblyName>ReadableBooks</AssemblyName>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net452</TargetFramework>
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
@@ -12,8 +12,10 @@
   </Target>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="HamstarHelpers">
-      <HintPath>..\..\..\Mod Helpers\Project\HamstarHelpers\bin\Release\net452\HamstarHelpers.dll</HintPath>
+      <HintPath>..\..\..\Mod Helpers\Project\HamstarHelpers\bin\Debug\net452\HamstarHelpers.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

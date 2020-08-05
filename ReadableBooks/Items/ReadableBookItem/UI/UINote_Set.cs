@@ -5,7 +5,7 @@ using Terraria.UI;
 using HamstarHelpers.Classes.Errors;
 
 
-namespace ReadableBooks.Items.NoteItem.UI {
+namespace ReadableBooks.Items.ReadableBookItem.UI {
 	/// <summary></summary>
 	public partial class UINote : UIElement {
 		/// <summary></summary>

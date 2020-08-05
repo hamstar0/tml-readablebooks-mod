@@ -1,6 +1,6 @@
-Implements a Readable Book item. For v1.0, can only be created via. API.
+Implements a Readable Book item. For v1.0, readable book items can only be created by way of API functions by other mods.
 
 Future plans:
-* Pen item to write books freely.
+* A pen item for players to write new books freely.
 * Placeable books and book shelves.
-* Magical books!
+* Magical books! A world of possibilities!
