@@ -2,7 +2,7 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using Terraria.ModLoader.IO;
 
 namespace ReadableBooks.Items.ReadableBookItem {
 	/// <summary>
@@ -68,7 +68,41 @@ namespace ReadableBooks.Items.ReadableBookItem {
 
 
 		////////////////
-		
+
+		public override void Load( TagCompound tag ) {
+			if( !tag.ContainsKey("pages") ) {
+				this.TitleText = "...";
+				this.Pages = new string[] { ". . ." };
+
+				return;
+			}
+
+			int pages = tag.GetInt( "pages" );
+			
+			this.Pages = new string[ pages ];
+
+			for( int i=0; i<pages; i++ ) {
+				this.Pages[i] = tag.GetString( "page_"+i );
+			}
+
+			this.TitleText = tag.GetString( "title" );
+		}
+
+		public override TagCompound Save() {
+			var tag = new TagCompound {
+				{ "title", this.TitleText },
+				{ "pages", this.Pages.Length }
+			};
+
+			for( int i=0; i<this.Pages.Length; i++ ) {
+				tag[ "page_"+i ] = this.Pages[i];
+			}
+
+			return tag;
+		}
+
+		////////////////
+
 		/// @private
 		public override void NetSend( BinaryWriter writer ) {
 			writer.Write( this.TitleText );
