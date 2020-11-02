@@ -18,7 +18,7 @@ namespace ReadableBooks.Items.ReadableBookItem {
 		////////////////
 
 		private static void DisplayNote( string titleText, string[] pages ) {
-			UINote elem = FreeHUD.GetElement( "ReadableBook" ) as UINote;
+			UINote elem = FreeHUD.GetElement("ReadableBook") as UINote;
 
 			if( elem == null ) {
 				elem = new UINote( titleText, pages );

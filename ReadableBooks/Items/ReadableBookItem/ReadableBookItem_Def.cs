@@ -4,24 +4,57 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
+
 namespace ReadableBooks.Items.ReadableBookItem {
 	/// <summary>
 	/// A readable note.
 	/// </summary>
 	public partial class ReadableBookItem : ModItem {
-		/// <summary></summary>
-		public string TitleText { get; private set; } = "Lorem Ipsum";
+		public static string DefaultTitle { get; private set; }
+		public static string[] DefaultPages { get; private set; }
+
+		private static string CopyTitle;
+		private static string[] CopyPages;
+
+		////
+
+		static ReadableBookItem() {
+			ReadableBookItem.DefaultTitle = "Lorem Ipsum";
+			ReadableBookItem.DefaultPages = new string[] {
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+					+"\nsed do eiusmod tempor incididunt ut labore et dolore"
+					+"\nmagna aliqua.",
+				"Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+					+"\nlaboris nisi ut aliquip ex ea commodo consequat.",
+				"Duis aute irure dolor in reprehenderit in voluptate velit"
+					+"\nesse cillum dolore eu fugiat nulla pariatur."
+			};
+			
+			ReadableBookItem.CopyTitle = ReadableBookItem.DefaultTitle;
+			ReadableBookItem.CopyPages = ReadableBookItem.DefaultPages;
+		}
+
+
+		////////////////
+
+		public static Item CreateBook( string title, string[] pages ) {
+			ReadableBookItem.CopyTitle = title;
+			ReadableBookItem.CopyPages = pages;
+
+			var book = new Item();
+			book.SetDefaults( ModContent.ItemType<ReadableBookItem>() );
+			return book;
+		}
+
+
+
+		////////////////
 
 		/// <summary></summary>
-		public string[] Pages { get; private set; } = new string[] {
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
-				+"\nsed do eiusmod tempor incididunt ut labore et dolore"
-				+"\nmagna aliqua.",
-			"Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-				+"\nlaboris nisi ut aliquip ex ea commodo consequat.",
-			"Duis aute irure dolor in reprehenderit in voluptate velit"
-				+"\nesse cillum dolore eu fugiat nulla pariatur."
-		};
+		public string TitleText { get; private set; }
+
+		/// <summary></summary>
+		public string[] Pages { get; private set; }
 
 
 		////////////////

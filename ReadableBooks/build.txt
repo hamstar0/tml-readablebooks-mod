@@ -1,6 +1,6 @@
 displayName = Readable Books
 author = hamstar
-version = 1.1.0
+version = 1.1.0.1
 modReferences = HamstarHelpers@5.9.0
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
 homepage = https://forums.terraria.org/index.php?threads/readable-books.96744/
