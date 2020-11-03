@@ -96,7 +96,7 @@ namespace ReadableBooks.Items.ReadableBookItem {
 			this.item.value = Item.buyPrice( 0, 0, 0, 75 );
 			this.item.rare = ItemRarityID.Blue;
 
-			this.SetTitleAndPages( this.TitleText, this.Pages );
+			this.SetTitleAndPages( ReadableBookItem.CopyTitle, ReadableBookItem.CopyPages );
 		}
 
 
