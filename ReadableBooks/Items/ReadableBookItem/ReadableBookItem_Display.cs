@@ -3,10 +3,10 @@ using Terraria.ModLoader;
 using HamstarHelpers.Helpers.UI;
 using HamstarHelpers.Services.UI.LayerDisable;
 using HamstarHelpers.Services.UI.FreeHUD;
-using ReadableBooks.Items.ReadableBookItem.UI;
+using ReadableBooks.Items.ReadableBook.UI;
 
 
-namespace ReadableBooks.Items.ReadableBookItem {
+namespace ReadableBooks.Items.ReadableBook {
 	/// <summary>
 	/// A readable note.
 	/// </summary>
