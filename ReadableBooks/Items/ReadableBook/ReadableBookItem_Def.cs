@@ -110,11 +110,11 @@ namespace ReadableBooks.Items.ReadableBook {
 				return;
 			}
 
-			int pages = tag.GetInt( "pages" );
+			int len = tag.GetInt( "pages" );
 			
-			this.Pages = new string[ pages ];
+			this.Pages = new string[ len ];
 
-			for( int i=0; i<pages; i++ ) {
+			for( int i=0; i<len; i++ ) {
 				this.Pages[i] = tag.GetString( "page_"+i );
 			}
 
@@ -122,12 +122,14 @@ namespace ReadableBooks.Items.ReadableBook {
 		}
 
 		public override TagCompound Save() {
+			string title = this.TitleText ?? "...";
+			int len = this.Pages?.Length ?? 0;
 			var tag = new TagCompound {
-				{ "title", this.TitleText },
-				{ "pages", this.Pages.Length }
+				{ "title", title },
+				{ "pages", len }
 			};
 
-			for( int i=0; i<this.Pages.Length; i++ ) {
+			for( int i=0; i<len; i++ ) {
 				tag[ "page_"+i ] = this.Pages[i];
 			}
 
@@ -138,10 +140,13 @@ namespace ReadableBooks.Items.ReadableBook {
 
 		/// @private
 		public override void NetSend( BinaryWriter writer ) {
-			writer.Write( this.TitleText );
-			writer.Write( this.Pages.Length );
-			foreach( string text in this.Pages ) {
-				writer.Write( text );
+			int len = this.Pages?.Length ?? 0;
+
+			writer.Write( this.TitleText ?? "..." );
+			writer.Write( len );
+
+			for( int i = 0; i < len; i++ ) {
+				writer.Write( this.Pages[i] );
 			}
 		}
 
