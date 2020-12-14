@@ -1,4 +1,6 @@
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,39 +12,28 @@ namespace ReadableBooks.Items.ReadableBook {
 	/// A readable note.
 	/// </summary>
 	public partial class ReadableBookItem : ModItem {
-		public static string DefaultTitle { get; private set; }
-		public static string[] DefaultPages { get; private set; }
-
-		private static string CopyTitle;
-		private static string[] CopyPages;
-
-		////
-
-		static ReadableBookItem() {
-			ReadableBookItem.DefaultTitle = "Lorem Ipsum";
-			ReadableBookItem.DefaultPages = new string[] {
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
-					+"\nsed do eiusmod tempor incididunt ut labore et dolore"
-					+"\nmagna aliqua.",
-				"Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-					+"\nlaboris nisi ut aliquip ex ea commodo consequat.",
-				"Duis aute irure dolor in reprehenderit in voluptate velit"
-					+"\nesse cillum dolore eu fugiat nulla pariatur."
-			};
-			
-			ReadableBookItem.CopyTitle = ReadableBookItem.DefaultTitle;
-			ReadableBookItem.CopyPages = ReadableBookItem.DefaultPages;
-		}
+		/*public static string DefaultTitle { get; private set; } = "Lorem Ipsum";
+		public static string[] DefaultPages { get; private set; } = new string[] {
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+				+"\nsed do eiusmod tempor incididunt ut labore et dolore"
+				+"\nmagna aliqua.",
+			"Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+				+"\nlaboris nisi ut aliquip ex ea commodo consequat.",
+			"Duis aute irure dolor in reprehenderit in voluptate velit"
+				+"\nesse cillum dolore eu fugiat nulla pariatur."
+		};*/
 
 
 		////////////////
 
 		public static Item CreateBook( string title, string[] pages ) {
-			ReadableBookItem.CopyTitle = title;
-			ReadableBookItem.CopyPages = pages;
-
 			var book = new Item();
 			book.SetDefaults( ModContent.ItemType<ReadableBookItem>() );
+
+			var mybook = book.modItem as ReadableBookItem;
+			mybook.TitleText = title;
+			mybook.Pages = pages;
+
 			return book;
 		}
 
@@ -56,6 +47,10 @@ namespace ReadableBooks.Items.ReadableBook {
 		/// <summary></summary>
 		public string[] Pages { get; private set; }
 
+
+		////
+
+		public override bool CloneNewInstances => false;
 
 		////////////////
 
@@ -81,6 +76,16 @@ namespace ReadableBooks.Items.ReadableBook {
 
 		////////////////
 
+		public override ModItem Clone( Item item ) {
+			var clone = base.Clone( item ) as ReadableBookItem;
+			clone.TitleText = ""+this.TitleText;
+			clone.Pages = this.Pages.ToArray();
+			return clone;
+		}
+
+
+		////////////////
+
 		/// @private
 		public override void SetStaticDefaults() {
 			this.DisplayName.SetDefault( "Readable Book" );
@@ -95,8 +100,6 @@ namespace ReadableBooks.Items.ReadableBook {
 			this.item.height = 24;
 			this.item.value = Item.buyPrice( 0, 0, 0, 75 );
 			this.item.rare = ItemRarityID.Blue;
-
-			this.SetTitleAndPages( ReadableBookItem.CopyTitle, ReadableBookItem.CopyPages );
 		}
 
 
@@ -110,6 +113,8 @@ namespace ReadableBooks.Items.ReadableBook {
 				return;
 			}
 
+			this.TitleText = tag.GetString( "title" );
+
 			int len = tag.GetInt( "pages" );
 			
 			this.Pages = new string[ len ];
@@ -117,8 +122,6 @@ namespace ReadableBooks.Items.ReadableBook {
 			for( int i=0; i<len; i++ ) {
 				this.Pages[i] = tag.GetString( "page_"+i );
 			}
-
-			this.TitleText = tag.GetString( "title" );
 		}
 
 		public override TagCompound Save() {
@@ -165,23 +168,17 @@ namespace ReadableBooks.Items.ReadableBook {
 
 		////////////////
 
-		/// @private
-		public override bool CanRightClick() {
-			this.DisplayCurrentNote();
-			return false;
-		}
+		public override void ModifyTooltips( List<TooltipLine> tooltips ) {
+			if( string.IsNullOrEmpty(this.TitleText) ) {
+				return;
+			}
 
+			var tip = new TooltipLine( this.mod, "ReadableBookTitle", this.TitleText );
+			tooltips.Insert( 0, tip );
 
-		////////////////
-
-		/// <summary></summary>
-		/// <param name="title"></param>
-		/// <param name="pages"></param>
-		public void SetTitleAndPages( string title, string[] pages ) {
-			this.item.SetNameOverride( "\""+title+"\"" );
-
-			this.TitleText = title;
-			this.Pages = pages;
+			if( Main.mouseRight && Main.mouseRightRelease ) {
+				this.DisplayCurrentNote();
+			}
 		}
 	}
 }
