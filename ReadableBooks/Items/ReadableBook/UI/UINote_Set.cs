@@ -19,8 +19,9 @@ namespace ReadableBooks.Items.ReadableBook.UI {
 			CalculatedStyle dim = this.TitleElem.GetOuterDimensions();
 			int realHeight = this.TitleElem.Text.ToCharArray().Sum( c => c == '\n' ? 1 : 0 );
 			realHeight = (int)( (float)(realHeight + 1) * (dim.Height + 18f) );
+			int topBase = UINote.PixelsFromTop + 32;
 
-			this.TitleElem.Top.Set( 160f - realHeight, 0f );
+			this.TitleElem.Top.Set( topBase - realHeight, 0f );
 			this.TitleElem.Left.Set( dim.Width * -0.5f, 0.5f );
 
 			this.TitleElem.Recalculate();

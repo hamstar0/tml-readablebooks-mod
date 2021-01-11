@@ -10,6 +10,12 @@ using HamstarHelpers.Classes.UI.Elements;
 namespace ReadableBooks.Items.ReadableBook.UI {
 	/// <summary></summary>
 	public partial class UINote : UIElement {
+		public const int PixelsFromTop = 144;
+
+
+
+		////////////////
+
 		/// <summary></summary>
 		protected UIThemedText TitleElem;
 		/// <summary></summary>
