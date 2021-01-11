@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.UI;
 using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace ReadableBooks.Items.ReadableBook.UI {
@@ -14,10 +16,14 @@ namespace ReadableBooks.Items.ReadableBook.UI {
 			this.TitleElem.SetText( text, 1f, true );
 			this.TitleElem.Recalculate();
 
-			CalculatedStyle dim = this.TitleElem.GetDimensions();
+			CalculatedStyle dim = this.TitleElem.GetOuterDimensions();
+			int realHeight = this.TitleElem.Text.ToCharArray().Sum( c => c == '\n' ? 1 : 0 );
+			realHeight = (int)( (float)(realHeight + 1) * (dim.Height + 18f) );
+
+			this.TitleElem.Top.Set( 160f - realHeight, 0f );
 			this.TitleElem.Left.Set( dim.Width * -0.5f, 0.5f );
 
-			this.Recalculate();
+			this.TitleElem.Recalculate();
 		}
 
 		/// <summary></summary>

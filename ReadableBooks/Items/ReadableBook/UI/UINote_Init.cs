@@ -3,6 +3,8 @@ using Terraria;
 using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Classes.UI.Theme;
 
 
 namespace ReadableBooks.Items.ReadableBook.UI {
@@ -12,12 +14,12 @@ namespace ReadableBooks.Items.ReadableBook.UI {
 		public override void OnInitialize() {
 			CalculatedStyle dim;
 
-			this.TitleElem = new UIText( this.TitleText, 1f, true );
+			this.TitleElem = new UIThemedText( UITheme.Vanilla, false, this.TitleText, 1f, true );
 			this.TitleElem.Left.Set( 0f, 0.5f );
 			this.TitleElem.Top.Set( 128f, 0f );
 			this.Append( this.TitleElem );
 
-			this.BodyElem = new UIText( this.BodyText, 1f, false );
+			this.BodyElem = new UIThemedText( UITheme.Vanilla, false, this.BodyText, 1f, false );
 			this.BodyElem.Left.Set( 0f, 0.5f );
 			this.BodyElem.Top.Set( 208f, 0f );
 			this.Append( this.BodyElem );
@@ -59,6 +61,7 @@ namespace ReadableBooks.Items.ReadableBook.UI {
 			//
 
 			this.SetTitle( this.TitleText );
+
 			this.GoToPage( this.CurrentPage );
 		}
 	}

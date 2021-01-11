@@ -4,15 +4,16 @@ using Terraria;
 using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.UI.Elements;
 
 
 namespace ReadableBooks.Items.ReadableBook.UI {
 	/// <summary></summary>
 	public partial class UINote : UIElement {
 		/// <summary></summary>
-		protected UIText TitleElem;
+		protected UIThemedText TitleElem;
 		/// <summary></summary>
-		protected UIText BodyElem;
+		protected UIThemedText BodyElem;
 
 		/// <summary></summary>
 		protected UIText PrevPageElem;
