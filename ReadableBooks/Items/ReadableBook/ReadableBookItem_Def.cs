@@ -12,7 +12,7 @@ namespace ReadableBooks.Items.ReadableBook {
 	/// A readable note.
 	/// </summary>
 	public partial class ReadableBookItem : ModItem {
-		/*public static string DefaultTitle { get; private set; } = "Lorem Ipsum";
+		public static string DefaultTitle { get; private set; } = "Lorem Ipsum";
 		public static string[] DefaultPages { get; private set; } = new string[] {
 			"Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
 				+"\nsed do eiusmod tempor incididunt ut labore et dolore"
@@ -21,7 +21,7 @@ namespace ReadableBooks.Items.ReadableBook {
 				+"\nlaboris nisi ut aliquip ex ea commodo consequat.",
 			"Duis aute irure dolor in reprehenderit in voluptate velit"
 				+"\nesse cillum dolore eu fugiat nulla pariatur."
-		};*/
+		};
 
 
 		////////////////
@@ -42,10 +42,10 @@ namespace ReadableBooks.Items.ReadableBook {
 		////////////////
 
 		/// <summary></summary>
-		public string TitleText { get; private set; }
+		public string TitleText { get; private set; } = ReadableBookItem.DefaultTitle;
 
 		/// <summary></summary>
-		public string[] Pages { get; private set; }
+		public string[] Pages { get; private set; } = ReadableBookItem.DefaultPages.ToArray();
 
 
 		////
