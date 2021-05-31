@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
-using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Classes.UI.Theme;
+using ModLibsCore.Classes.Errors;
+using ModLibsUI.Classes.UI.Theme;
+using ModLibsUI.Classes.UI.Elements;
 
 
 namespace ReadableBooks.Items.ReadableBook.UI {

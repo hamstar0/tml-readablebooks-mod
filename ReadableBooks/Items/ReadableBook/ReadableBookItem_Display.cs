@@ -1,8 +1,8 @@
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.UI;
-using HamstarHelpers.Services.UI.LayerDisable;
-using HamstarHelpers.Services.UI.FreeHUD;
+using ModLibsGeneral.Libraries.UI;
+using ModLibsUI.Services.UI.LayerDisable;
+using ModLibsUI.Services.UI.FreeHUD;
 using ReadableBooks.Items.ReadableBook.UI;
 
 
@@ -49,7 +49,7 @@ namespace ReadableBooks.Items.ReadableBook {
 				return;
 			}
 
-			bool uiAvailable = UIHelpers.IsUIAvailable(
+			bool uiAvailable = UILibraries.IsUIAvailable(
 				//mouseNotInUse: true,
 				playerAvailable: true,
 				playerNotTalkingToNPC: true,

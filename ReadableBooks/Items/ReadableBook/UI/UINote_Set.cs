@@ -3,8 +3,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.UI;
-using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using ModLibsCore.Classes.Errors;
+using ModLibsCore.Libraries.Debug;
 
 
 namespace ReadableBooks.Items.ReadableBook.UI {
@@ -31,7 +31,7 @@ namespace ReadableBooks.Items.ReadableBook.UI {
 		/// <param name="pages"></param>
 		public void SetPages( string[] pages ) {
 			if( pages.Length == 0 ) {
-				throw new ModHelpersException( "Cannot load empty note." );
+				throw new ModLibsException( "Cannot load empty note." );
 			}
 
 			this.Pages = pages;

@@ -63,7 +63,7 @@ namespace ReadableBooks.Items.ReadableBook {
 		public bool? IsScribingEnabled {
 			get {
 				if( !this._IsScribingEnabled.HasValue ) {
-					return ModHelpersConfig.Instance.NoteWritingEnabled;
+					return ModLibrariesConfig.Instance.NoteWritingEnabled;
 				}
 				return this._IsScribingEnabled;
 			}
