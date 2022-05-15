@@ -14,12 +14,12 @@ namespace ReadableBooks.Items.ReadableBook.UI {
 		public override void OnInitialize() {
 			CalculatedStyle dim;
 
-			this.TitleElem = new UIThemedText( UITheme.Vanilla, false, this.TitleText, 1f, true );
+			this.TitleElem = new UIThemedText( UITheme.Vanilla, false, this.TitleText, true, 1f, true );
 			this.TitleElem.Left.Set( 0f, 0.5f );
 			this.TitleElem.Top.Set( UINote.PixelsFromTop, 0f );
 			this.Append( this.TitleElem );
 
-			this.BodyElem = new UIThemedText( UITheme.Vanilla, false, this.BodyText, 1f, false );
+			this.BodyElem = new UIThemedText( UITheme.Vanilla, false, this.BodyText, true, 1f, false );
 			this.BodyElem.Left.Set( 0f, 0.5f );
 			this.BodyElem.Top.Set( UINote.PixelsFromTop + 64f, 0f );
 			this.Append( this.BodyElem );
